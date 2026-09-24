@@ -21,7 +21,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnSalvar;
+    private Button btnSalvar, btnSignUp;
     private TextInputLayout ilEquipamento, ilNumero, ilRetorno;
     private TextInputEditText edtEquipamento, edtNumero, edtRetorno;
 
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         edtEquipamento = findViewById(R.id.edtEquipamento);
         edtNumero = findViewById(R.id.edtNumero);
         edtRetorno = findViewById(R.id.edtRetorno);
-        View btnSignUp = findViewById(R.id.btnSignUp);
+        btnSignUp = findViewById(R.id.btnSignUp);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected (@NonNull MenuItem item){
         if (item.getItemId() == R.id.menu_config){
-            Toast.makeText(this, "Configurações Selecionadas",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, Config.class);
+            startActivity(intent);
             return true;
         }
 
