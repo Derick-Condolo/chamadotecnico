@@ -14,16 +14,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
-
-    private Button btnSalvar;
-    private TextInputLayout ilEquipamento, ilNumero, ilRetorno;
-    private TextInputEditText edtEquipamento, edtNumero, edtRetorno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,64 +39,12 @@ public class MainActivity extends AppCompatActivity {
         MaterialToolbar toolbar = findViewById(R.id.toolbarTop);
         setSupportActionBar(toolbar);
 
-        btnSalvar = findViewById(R.id.btnSalvar);
-        ilEquipamento = findViewById(R.id.ilEquipamento);
-        ilNumero = findViewById(R.id.ilNumero);
-        ilRetorno = findViewById(R.id.ilRetorno);
-        edtEquipamento = findViewById(R.id.edtEquipamento);
-        edtNumero = findViewById(R.id.edtNumero);
-        edtRetorno = findViewById(R.id.edtRetorno);
-        View btnSignUp = findViewById(R.id.btnSignUp);
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host);
+        NavController navController = navHostFragment.getNavController();
+        NavigationUI.setupWithNavController(bottomNav, navController);
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SignUp.class);
-                startActivity(intent);
-            }
-        });
-
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String equipamento = edtEquipamento.getText().toString();
-                String numeroString = edtNumero.getText().toString();
-                String retorno = edtRetorno.getText().toString();
-
-                ilEquipamento.setError(null);
-                ilNumero.setError(null);
-                ilRetorno.setError(null);
-
-                if(equipamento.isEmpty()){
-                    ilEquipamento.setError("Campo obrigatório");
-                    return;
-                }
-
-                if(numeroString.isEmpty()){
-                    ilNumero.setError("Campo obrigatório");
-                    return;
-                }
-
-                if(retorno.isEmpty()){
-                    ilRetorno.setError("Campo obrigatório");
-                    return;
-                }
-
-                if(!retorno.contains("@")){
-                    ilRetorno.setError("E-mail sem arroba");
-                    return;
-                }
-
-                try {
-                    int numero = Integer.parseInt(numeroString);
-                } catch (NumberFormatException e) {
-                    ilNumero.setError("Numero invalido");
-                }
-                Toast.makeText(MainActivity.this, "Salvo com sucesso",Toast.LENGTH_SHORT).show();
-
-                
-            }
-        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

@@ -16,58 +16,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ilEquipamento"
-        android:layout_width="match_parent"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:hint="Nome do Equipamento:"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarTop"
+        app:menu="@menu/menu_bottom_nav"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtEquipamento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ilNumero"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="N° do Patrimonio:"
-        app:layout_constraintTop_toBottomOf="@+id/ilEquipamento"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:name="com.condolo.atividadetabela.NavHostFragment"
+        app:defaultNavHost="true"
+        app:layout_constraintTop_toBottomOf="@id/toolbarTop"
+        app:layout_constraintBottom_toBottomOf="@id/bottomNav"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtNumero"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ilRetorno"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/ilNumero"
-        android:hint="Email para Retorno">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtRetorno"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/btnSalvar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/ilRetorno"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"
-        android:text="Chamar"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/btnSignUp"
