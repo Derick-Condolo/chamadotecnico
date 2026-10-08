@@ -14,17 +14,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Button btnSalvar;
+    private TextInputLayout ilEquipamento, ilNumero, ilRetorno;
+    private TextInputEditText edtEquipamento, edtNumero, edtRetorno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +37,15 @@ public class MainActivity extends AppCompatActivity {
         });
         MaterialToolbar toolbar = findViewById(R.id.toolbarTop);
         setSupportActionBar(toolbar);
+        View btnSignUp = findViewById(R.id.btnSignUp);
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
-        NavHostFragment navHostFragment =
-                (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host);
-        NavController navController = navHostFragment.getNavController();
-        NavigationUI.setupWithNavController(bottomNav, navController);
-
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SignUp.class);
+                startActivity(intent);
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
